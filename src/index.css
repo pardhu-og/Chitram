@@ -4,6 +4,9 @@
 @utility cust-shadow {
     box-shadow: 3.4px 6.7px 6.7px hsl(0deg 0% 0% / 0.40);
 }
+@utility cust-drop-shadow {
+    filter: drop-shadow(3.4px 6.7px 6.7px hsl(0deg 0% 0% / 0.40));
+}
 
 @theme {
     --animate-revolve: revolve 3s linear infinite;
