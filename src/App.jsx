@@ -1,15 +1,16 @@
 import Title from "./components/title"
 import Display from "./components/display"
 import DetailsPge from "./pages/detailspge"
+import { Routes, Route } from "react-router-dom"
 function App() {
   
   return (
     <div className="p-1 min-h-screen bg-gray-700/30">
-    <div className="">
-    {/*<Title/>
-    <Display/>*/}
-    <DetailsPge />
-    </div>
+      <Title/>
+      <Routes>
+        <Route path="/" element={<Display/>} />
+        <Route path="/:movieId" element={<DetailsPge />} />
+      </Routes>
     </div>
     
   )
