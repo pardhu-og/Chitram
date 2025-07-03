@@ -1,4 +1,3 @@
-import Title from "../components/title"
 import detailsdatafrmId from '../data/sampleDetails.json'
 import { useEffect, useState } from "react"
 import ImagesfrmId from '../data/sampleImages.json'
@@ -96,12 +95,12 @@ export default function DetailsPge (){
             {videodata && videodata.results.length === 0 && <p>No Videos Available</p>}
             {videodata && 
                 <div className="col-span-2 flex justify-center py-2 mx-2 gap-2">
-                {videodata.results.length > 0 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl"  src={`https://www.youtube.com/embed/${videodata.results[0].key}`} title={`${videos.results[0].name}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>}
+                {videodata.results.length > 0 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl"  src={`https://www.youtube.com/embed/${videodata.results[0].key}`} title={`${videos.results[0].name} `} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" ></iframe></div>}
                 {videodata.results.length > 1 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl" src={`https://www.youtube.com/embed/${videodata.results[1].key}`} title={`${videos.results[0].name}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>}
             </div>
             }
-            <div className="col-span-2 mx-2">
-                <img className="rounded-xl" src={`${imglink}${detailsData.backdrop_path}`} alt="" />
+            <div className="col-span-2 mx-2 ">
+                <img className="rounded-xl mb-2" src={`${imglink}${detailsData.backdrop_path}`} alt="" />
             </div>
         </div>
         }
