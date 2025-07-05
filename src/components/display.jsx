@@ -13,7 +13,7 @@ export default function Display(){
                     method: 'GET',
                     headers: {
                         accept: 'application/json',
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTk1Yzg3N2JlN2E3OGY4ODMzYTk3NWU1MTllNTFlOCIsIm5iZiI6MTc1MTI4NDc5OS40Niwic3ViIjoiNjg2MjdjM2Y5NWYzMzEwNTgyNzE4OWRmIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.2xAF5Akl3St260Khas9TG-VvyZkFTHYnIPrnbeDLoaw'
+                        Authorization: import.meta.env.VITE_TMDB_TOKEN
                     }
                 })
                 if (!res.ok) {throw new Error(`Error: ${res.status}`)}

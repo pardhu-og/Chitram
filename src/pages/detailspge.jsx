@@ -4,6 +4,7 @@ import ImagesfrmId from '../data/sampleImages.json'
 import videos from '../data/sampleVideos.json' 
 import caste from '../data/sampleCaste.json'
 import { useParams } from "react-router-dom"
+import { Bookmark, SquareCheckBig } from 'lucide-react'
 export default function DetailsPge (){
     const [detailsData, setDetailsData] = useState(null)
     const [imgData, setImgData] = useState(null)
@@ -11,15 +12,47 @@ export default function DetailsPge (){
     const [videodata, setVideoData] =useState(null)
     const imglink = "https://image.tmdb.org/t/p/original"
     const { movieId } = useParams();
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userdata")) || {"wishList":[], "seenList":[]})
+    const [status, setStatus] = useState(null)
+ 
     const options = { 
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTk1Yzg3N2JlN2E3OGY4ODMzYTk3NWU1MTllNTFlOCIsIm5iZiI6MTc1MTI4NDc5OS40Niwic3ViIjoiNjg2MjdjM2Y5NWYzMzEwNTgyNzE4OWRmIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.2xAF5Akl3St260Khas9TG-VvyZkFTHYnIPrnbeDLoaw'
+            Authorization: import.meta.env.VITE_TMDB_TOKEN
         }
     }
+    function addUserData (e){
+        const name = e.target.name
+        const movie = e.target.value
+       const x = userData.wishList.length >0 ? userData.wishList.filter(p=> p !== movie): []
+       const y = userData.seenList.length >0 ? userData.seenList.filter(p=> p !== movie): []
+        if (name === "wishList" && status !== "wishList") {
+            const filtered = {wishList: [...x, movie], seenList:[...y]}
+            setUserData(filtered)
+            setStatus("wishList")
+        }
+       else if (name === "seenList" && status !== "seenList") {
+            const filtered = {wishList: [...x], seenList:[...y, movie]}
+            setUserData(filtered)
+            setStatus("seenList")
+        } else {
+            const filtered = {wishList: [...x], seenList:[...y]}
+            setUserData(filtered)
+            setStatus(null)
+        } 
+    }
 
+     useEffect(()=>{
+        localStorage.setItem("userdata",JSON.stringify(userData))
+    }, [userData])
+
+    useEffect(()=>{
+        if(userData && userData.wishList) {if(userData.wishList.some(p=> p === movieId)) {setStatus("wishList")}}
+        if(userData && userData.seenList) {if(userData.seenList.some(p=> p === movieId)) {setStatus("seenList")}}
+    },[])
     // Async operations start
+
     useEffect (()=>{
         async function fetchDetails () {
             try {
@@ -57,24 +90,28 @@ export default function DetailsPge (){
                 setVideoData(data)
             } catch (err) {console.log(err)}
        }
-       fetchVideoData()
+      // fetchVideoData ()
+  
     },[])
+    
     return(
         <>
+               { console.log(userData)}
         {!detailsData && "Loading"}
         {detailsData && 
             <div className={`grid grid-cols-[240px_1fr] m-1 p-2 gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl`} >
             <div className="object-contain">
                 <img className="m-2 rounded-lg object-contain "src={`https://image.tmdb.org/t/p/w780${detailsData.poster_path}`} alt="" />
             </div>
-            <div className="m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm rounded-xl flex flex-col gap-3" >
+            <div className="m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3" >
                 <div className="text-3xl font-extrabold">{detailsData.title}</div>
                         <div className="italic font-[400]  ">{detailsData.tagline}</div>
                         <div className="flex leading-none divide-x-[1.5px] ml-[-8px]">{detailsData.genres.map((p)=><div key={p.id} className="p-1 px-2 ">{p.name}</div>)}</div>
                         <div>Release Date: {detailsData.release_date}</div>
                         <div>{detailsData.vote_average.toFixed(1)} / 10</div>
-                        <div className="flex gap-4"><button className="px-2 py-0.5 bg-indigo-500/40 hover:bg-blue-700/20 rounded font-medium italic">Wish list</button>
-                             <button className="px-2 py-0.5 bg-indigo-500/40 hover:bg-blue-700/20 rounded font-medium italic">Watched List</button></div>
+                        <div className="flex gap-4">
+                             <button name='wishList' value={detailsData.id} onClick={addUserData} className="px-2 py-0.5  hover:bg-blue-700/20 rounded font-medium italic hover:cursor-pointer hover:text-gray-200" title={`${status === "wishList"?"Remove from Wish List":"Add to Wish List"}`}><Bookmark className={`pointer-events-none ${status === "wishList"?"fill-blue-400 stroke-blue-800":""}`}/></button>
+                             <button name='seenList' value={detailsData.id} onClick={addUserData} className="px-2 py-0.5  hover:bg-blue-700/20 rounded font-medium italic hover:cursor-pointer hover:text-gray-200" title={`${status === "seenList"?"Remove from Seen List":"Add to Seen List"}`}><SquareCheckBig  className={`pointer-events-none ${status === "seenList"?"fill-blue-400 stroke-blue-800":""}`}/></button></div>
                         <div>
                             <div className="text-xl">Overview:</div>
                             <div>{detailsData.overview}</div>
@@ -84,7 +121,7 @@ export default function DetailsPge (){
                 {!castdata && "Loading"}
                 {castdata && castdata.cast.length === 0 && <p>No Cast Data Available</p>}
                 {castdata && castdata.cast.filter((p)=>p.order <=10).map((p)=><div key={p.id} className=" flex border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm m-2 p-2 rounded-xl ">
-                                                                            <div><img className="w-20 rounded-full aspect-square object-contain object-top" src={`https://image.tmdb.org/t/p/w300${p.profile_path}`} alt={`${p.name}` } /></div>
+                                                                            <div><img className="w-20 rounded-full aspect-square object-contain object-top text-xs text-center font-medium" src={`https://image.tmdb.org/t/p/w300${p.profile_path}`} alt={`${p.name}` } /></div>
                                                                             <div className="flex flex-col justify-center gap-1">
                                                                                 <div>{p.name}</div>
                                                                                 <div>{p.character}</div>
