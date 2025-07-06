@@ -1,9 +1,9 @@
-import detailsdatafrmId from '../data/sampleDetails.json'
+// import detailsdatafrmId from '../data/sampleDetails.json'
 import { useEffect, useState } from "react"
-import ImagesfrmId from '../data/sampleImages.json'
-import videos from '../data/sampleVideos.json' 
-import caste from '../data/sampleCaste.json'
-import { useParams } from "react-router-dom"
+// import ImagesfrmId from '../data/sampleImages.json'
+// import videos from '../data/sampleVideos.json' 
+// import caste from '../data/sampleCaste.json'
+import { Link, useParams } from "react-router-dom"
 import { Bookmark, SquareCheckBig } from 'lucide-react'
 export default function DetailsPge (){
     const [detailsData, setDetailsData] = useState(null)
@@ -90,7 +90,7 @@ export default function DetailsPge (){
                 setVideoData(data)
             } catch (err) {console.log(err)}
        }
-      // fetchVideoData ()
+        fetchVideoData ()
   
     },[])
     
@@ -99,9 +99,9 @@ export default function DetailsPge (){
                { console.log(userData)}
         {!detailsData && "Loading"}
         {detailsData && 
-            <div className={`grid grid-cols-[240px_1fr] m-1 p-2 gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl`} >
-            <div className="object-contain">
-                <img className="m-2 rounded-lg object-contain "src={`https://image.tmdb.org/t/p/w780${detailsData.poster_path}`} alt="" />
+            <div className={`flex flex-col justify-evenly md:grid md:grid-cols-[240px_1fr] m-1 p-2 md:gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl`} >
+            <div className=" md:object-contain">
+                <img className="m-2 rounded-lg  md:object-contain "src={`https://image.tmdb.org/t/p/w780${detailsData.poster_path}`} alt="" />
             </div>
             <div className="m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3" >
                 <div className="text-3xl font-extrabold">{detailsData.title}</div>
@@ -120,20 +120,21 @@ export default function DetailsPge (){
             <div className="mx-2 py-2 font-bold bg-white/30 rounded-lg col-span-2 flex flex-wrap justify-evenly">
                 {!castdata && "Loading"}
                 {castdata && castdata.cast.length === 0 && <p>No Cast Data Available</p>}
-                {castdata && castdata.cast.filter((p)=>p.order <=10).map((p)=><div key={p.id} className=" flex border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm m-2 p-2 rounded-xl ">
+                {castdata && castdata.cast.filter((p)=>p.order <=10).map((p)=><Link key={p.id} to={`/person/${p.id}`}>
+                                                                            <div className=" flex border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm my-2 p-2 rounded-xl ">
                                                                             <div><img className="w-20 rounded-full aspect-square object-contain object-top text-xs text-center font-medium" src={`https://image.tmdb.org/t/p/w300${p.profile_path}`} alt={`${p.name}` } /></div>
                                                                             <div className="flex flex-col justify-center gap-1">
                                                                                 <div>{p.name}</div>
                                                                                 <div>{p.character}</div>
                                                                             </div>
-                                                                            </div>)}
+                                                                            </div></Link>)}
             </div>
             {!videodata && "Loading"}
             {videodata && videodata.results.length === 0 && <p>No Videos Available</p>}
             {videodata && 
                 <div className="col-span-2 flex justify-center py-2 mx-2 gap-2">
-                {videodata.results.length > 0 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl"  src={`https://www.youtube.com/embed/${videodata.results[0].key}`} title={`${videos.results[0].name} `} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" ></iframe></div>}
-                {videodata.results.length > 1 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl" src={`https://www.youtube.com/embed/${videodata.results[1].key}`} title={`${videos.results[0].name}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>}
+                {videodata.results.length > 0 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl"  src={`https://www.youtube.com/embed/${videodata.results[0].key}`} title={`${videodata.results[0].name} `} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" ></iframe></div>}
+                {videodata.results.length > 1 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl" src={`https://www.youtube.com/embed/${videodata.results[1].key}`} title={`${videodata.results[0].name}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>}
             </div>
             }
             <div className="col-span-2 mx-2 ">

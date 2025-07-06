@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom"
 function App() {
   
   return (
-    <div className="p-1 min-h-screen bg-gray-700/30">
+    <div className="p-1 min-h-screen bg-gray-700/30 border-8 md:border-none">
       <Title/>
       <Routes>
         <Route path="/" element={<Display/>} />
