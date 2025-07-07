@@ -96,15 +96,14 @@ export default function DetailsPge (){
     
     return(
         <>
-               { console.log(userData)}
         {!detailsData && "Loading"}
         {detailsData && 
-            <div className={`flex flex-col justify-evenly md:grid md:grid-cols-[240px_1fr] m-1 p-2 md:gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl`} >
+            <div className={`md:grid md:grid-cols-[240px_1fr] m-1 p-2 md:gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl`} >
             <div className=" md:object-contain">
                 <img className="m-2 rounded-lg  md:object-contain "src={`https://image.tmdb.org/t/p/w780${detailsData.poster_path}`} alt="" />
             </div>
             <div className="m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3" >
-                <div className="text-3xl font-extrabold">{detailsData.title}</div>
+                <div className="text-3xl font-extrabold ">{detailsData.title}</div>
                         <div className="italic font-[400]  ">{detailsData.tagline}</div>
                         <div className="flex leading-none divide-x-[1.5px] ml-[-8px]">{detailsData.genres.map((p)=><div key={p.id} className="p-1 px-2 ">{p.name}</div>)}</div>
                         <div>Release Date: {detailsData.release_date}</div>
