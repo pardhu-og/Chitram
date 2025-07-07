@@ -8,6 +8,26 @@ export default function PersonsDetailspge (){
     const {personId} = useParams()
     const[personData, setPersonData] = useState(null)
     const[knownfortitels, setKnownfortitels] =useState(null)
+    const [favourite, setFavourite] = useState(false)
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userdata")) || {"wishList":[], "seenList":[], "favactr":[]})
+    function favouritefunc(){
+        if(!favourite) {
+           const data = [...userData.favactr, String(personId)]
+           console.log(userData.favactr)
+            setUserData (p=>({...p, "favactr":data }))
+            setFavourite(true)
+        } else {
+          const  data = userData.favactr.filter(p=> p!== personId)
+            setUserData (p=>({...p, "favactr":[...data] }))
+            setFavourite(false)
+        }
+    }
+
+    useEffect(()=>{
+        localStorage.setItem("userdata",JSON.stringify(userData))
+    }, [userData])
+
+
     async function fetchPersonDetails(personId) {
           try{
             const res = await fetch(`https://api.themoviedb.org/3/person/${personId}`, {
@@ -38,9 +58,11 @@ export default function PersonsDetailspge (){
 
     useEffect(()=>{
         fetchPersonDetails(personId)
+    },[personId])
+
+    useEffect(()=>{
+            if (userData.favactr.some(p=> p === String(personId))) {setFavourite(true)}
     },[])
-
-
 
 
 
@@ -56,13 +78,13 @@ export default function PersonsDetailspge (){
         <div className="grid grid-cols-[240px_1fr]  m-1 p-2 md:gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl">
             <img className="m-2 rounded-xl object-contain border border-white/30" src={`https://image.tmdb.org/t/p/original${personData.profile_path}`} alt={`${personData.name}`} />
             <div className="overflow-hidden h-90 m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3">
-                <div className="text-3xl font-extrabold font-[cursive]">{personData.name} <button className="hover:cursor-pointer"><Heart className=" w-8 fill-red-400" /></button></div>
+                <div className="text-3xl font-extrabold font-[cursive]">{personData.name} <button onClick={favouritefunc} className="hover:cursor-pointer"><Heart className={` w-8 ${favourite?"fill-red-400":"fill-white/50"}`} /></button></div>
                 <div>Date of Birth: {personData.birthday}</div>
                 <div>Known for: {personData.known_for_department}</div>
                 <div>Place of Birth: {personData.place_of_birth}</div>
                 <div className={`-m-4 p-4 overflow-hidden text-justify ${personData.biography.length > 600?"bg-gradient-to-b from-transparent via-black/10 to-black rounded-xl":"" } relative`}>Biography: {personData.biography}
                 {personData.biography.length >600 && 
-                <button className=" -mx-6 -mb-1 pr-8 text-right absolute bottom-3 p-2 w-full bg-gradient-to-b from transparent to-black right-6 text-gray-200 text-sm font-medium" onClick={()=>setBiography(true)}>Read More...</button>}
+                <button className=" -mx-6 -mb-1 pr-8 text-right absolute bottom-3 p-2 w-full bg-gradient-to-b from transparent to-black right-6 text-gray-200 text-sm font-medium hover:cursor-pointer hover:text-gray-500" onClick={()=>setBiography(true)}>Read More...</button>}
                 </div>
             </div>
 

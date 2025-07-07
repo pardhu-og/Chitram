@@ -12,7 +12,7 @@ export default function DetailsPge (){
     const [videodata, setVideoData] =useState(null)
     const imglink = "https://image.tmdb.org/t/p/original"
     const { movieId } = useParams();
-    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userdata")) || {"wishList":[], "seenList":[]})
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userdata")) || {"wishList":[], "seenList":[], "favactr":[]})
     const [status, setStatus] = useState(null)
  
     const options = { 
@@ -27,17 +27,18 @@ export default function DetailsPge (){
         const movie = e.target.value
        const x = userData.wishList.length >0 ? userData.wishList.filter(p=> p !== movie): []
        const y = userData.seenList.length >0 ? userData.seenList.filter(p=> p !== movie): []
+       
         if (name === "wishList" && status !== "wishList") {
-            const filtered = {wishList: [...x, movie], seenList:[...y]}
+            const filtered = {wishList: [...x, movie], seenList:[...y], favactr:[...userData.favactr]}
             setUserData(filtered)
             setStatus("wishList")
         }
        else if (name === "seenList" && status !== "seenList") {
-            const filtered = {wishList: [...x], seenList:[...y, movie]}
+            const filtered = {wishList: [...x], seenList:[...y, movie], favactr:[...userData.favactr]}
             setUserData(filtered)
             setStatus("seenList")
         } else {
-            const filtered = {wishList: [...x], seenList:[...y]}
+            const filtered = {wishList: [...x], seenList:[...y], favactr:[...userData.favactr]}
             setUserData(filtered)
             setStatus(null)
         } 
