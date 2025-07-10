@@ -7,7 +7,7 @@ import UserPage from "./pages/user"
 function App() {
   
   return (
-    <div className="p-1 min-h-screen bg-gray-700/60 border-8 md:border-none">
+    <div className="p-1 min-h-screen bg-gray-700/60 ">
       
       <Title/>
       <Routes>

@@ -97,11 +97,11 @@ export default function DetailsPge (){
     
     return(
         <>
-        {!detailsData && "Loading"}
+        {!detailsData && <h1 className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1>}
         {detailsData && 
-            <div className={`md:grid md:grid-cols-[240px_1fr] m-1 p-2 md:gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl`} >
-            <div className=" md:object-contain">
-                <img className="m-2 rounded-lg  md:object-contain "src={`https://image.tmdb.org/t/p/w780${detailsData.poster_path}`} alt="" />
+            <div className={`flex flex-col rounded-xl sm:grid sm:grid-cols-[240px_1fr] sm:m-1 sm:p-2 sm:gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl`} >
+            <div className="m-2 sm:m-0 sm:mt-2 ">
+                <img className="sm:mx-2 rounded-xl  sm:object-contain "src={`https://image.tmdb.org/t/p/w780${detailsData.poster_path}`} alt="" />
             </div>
             <div className="m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3" >
                 <div className="text-3xl font-extrabold ">{detailsData.title}</div>
@@ -114,14 +114,14 @@ export default function DetailsPge (){
                              <button name='seenList' value={detailsData.id} onClick={addUserData} className="px-2 py-0.5  hover:bg-blue-700/20 rounded font-medium italic hover:cursor-pointer hover:text-gray-200" title={`${status === "seenList"?"Remove from Seen List":"Add to Seen List"}`}><SquareCheckBig  className={`pointer-events-none ${status === "seenList"?"fill-blue-400 stroke-blue-800":""}`}/></button></div>
                         <div>
                             <div className="text-xl">Overview:</div>
-                            <div>{detailsData.overview}</div>
+                            <div className="text-justify">{detailsData.overview}</div>
                         </div>
             </div>
-            <div className="mx-2 py-2 font-bold bg-white/30 rounded-lg col-span-2 flex flex-wrap justify-evenly">
-                {!castdata && "Loading"}
+            <div className="mx-2 py-2 font-bold bg-white/30 rounded-lg col-span-2 flex flex-wrap justify-evenly gap-1">
+                {!castdata && <h1 className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1>}
                 {castdata && castdata.cast.length === 0 && <p>No Cast Data Available</p>}
                 {castdata && castdata.cast.filter((p)=>p.order <=10).map((p)=><Link key={p.id} to={`/person/${p.id}`}>
-                                                                            <div className=" flex border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm my-2 p-2 rounded-xl ">
+                                                                            <div className=" flex w-80 sm:w-full border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm my-2 p-2 rounded-xl ">
                                                                             <div><img className="w-20 rounded-full aspect-square object-contain object-top text-xs text-center font-medium" src={`https://image.tmdb.org/t/p/w300${p.profile_path}`} alt={`${p.name}` } /></div>
                                                                             <div className="flex flex-col justify-center gap-1">
                                                                                 <div>{p.name}</div>
@@ -129,16 +129,16 @@ export default function DetailsPge (){
                                                                             </div>
                                                                             </div></Link>)}
             </div>
-            {!videodata && "Loading"}
-            {videodata && videodata.results.length === 0 && <p>No Videos Available</p>}
+            {!videodata && <h1 className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1>}
+            {videodata && videodata.results.length === 0 && <p className="text-center text-2xl col-span-2 mt-4">No Videos Available</p>}
             {videodata && 
-                <div className="col-span-2 flex justify-center py-2 mx-2 gap-2">
-                {videodata.results.length > 0 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl"  src={`https://www.youtube.com/embed/${videodata.results[0].key}`} title={`${videodata.results[0].name} `} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" ></iframe></div>}
-                {videodata.results.length > 1 && <div className="w-1/2"><iframe className="w-full aspect-video rounded-xl" src={`https://www.youtube.com/embed/${videodata.results[1].key}`} title={`${videodata.results[0].name}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>}
+                <div className="col-span-2 flex flex-col sm:flex-row justify-center py-2 mx-2 gap-2">
+                {videodata.results.length > 0 && <div className="w-full sm:w-1/2"><iframe className="w-full aspect-video rounded-xl"  src={`https://www.youtube.com/embed/${videodata.results[0].key}`} title={`${videodata.results[0].name} `} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe></div>}
+                {videodata.results.length > 1 && <div className="w-full sm:w-1/2"><iframe className="w-full aspect-video rounded-xl" src={`https://www.youtube.com/embed/${videodata.results[1].key}`} title={`${videodata.results[1].name}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe></div>}
             </div>
             }
             <div className="col-span-2 mx-2 ">
-                <img className="rounded-xl mb-2" src={`${imglink}${detailsData.backdrop_path}`} alt="" />
+                <img className="rounded-xl mb-2" src={`${imglink}${detailsData.backdrop_path}`} alt={`Backdrop image of ${detailsData.title}`} />
             </div>
         </div>
         }

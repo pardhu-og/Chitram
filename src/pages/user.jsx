@@ -64,10 +64,15 @@ try {
     return(
         <>
         <div className="flex flex-wrap gap-6 justify-center p-4 w-fit mx-auto  font-[cursive] text-lg">
-                <button value={"wishList"} onClick={handleClick} className={`px-4 py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100   transition-all duration-100 ease-out ${list === "wishList"?" bg-purple-400/80  text-gray-100 hover:bg-purple-400/80 pointer-events-none":""}`}>Wish List</button>
-                <button value={"seenList"} onClick={handleClick} className={`px-4 py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100 transition-all duration-100 ease-out  ${list === "seenList"?" bg-purple-400/80  text-gray-100 hover:bg-purple-400/80 pointer-events-none":""}`}>Seen </button>
-                <button value={"favactr"} onClick={handleClick} className={`px-4 py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100 transition-all duration-100 ease-out  ${list === "favactr"?" bg-purple-400/80  text-gray-100 hover:bg-purple-400/80 pointer-events-none":""}`}>Favoutie Person</button>
+                <button value={"wishList"} onClick={handleClick} className={`px-4 py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100   transition-all duration-100 ease-out ${list === "wishList"?" bg-purple-400/80  text-gray-100 hover:bg-purple-400/80 pointer-events-none":""}`}>To Watch</button>
+                <button value={"seenList"} onClick={handleClick} className={`px-4 py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100 transition-all duration-100 ease-out  ${list === "seenList"?" bg-purple-400/80  text-gray-100 hover:bg-purple-400/80 pointer-events-none":""}`}>Watched </button>
+                <button value={"favactr"} onClick={handleClick} className={`px-4 py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100 transition-all duration-100 ease-out  ${list === "favactr"?" bg-purple-400/80  text-gray-100 hover:bg-purple-400/80 pointer-events-none":""}`}>Favoutie People</button>
             </div>
+        <h1 className="text-xl sm:text-2xl font-bold text-center">
+            {list === "wishList" && "Your To-Watch List"}
+            {list === "seenList" && "Movies You've Watched"}
+            {list === "favactr" && "Your Favourite People"}
+        </h1>
         {(list !== "favactr") && 
             <div className="flex flex-wrap gap-6 justify-center p-4">
                 {output.map((p)=>
@@ -95,7 +100,7 @@ try {
                         <img src={`https://image.tmdb.org/t/p/w500${p.profile_path}`} alt={p.name} className=" rounded-lg "/>
                         <div className="w-full h-full absolute top-0 left-0 bg-white/50 backdrop-blur-lg opacity-0 hover:opacity-100 rounded-xl ">
                         <div className=" text-center text-xl font-bold absolute top-0 left-1/2 translate-x-[-50%] flex flex-col justify-center h-full gap-2">
-                            <div className="cust-drop-shadow">{p.name}</div>
+                        <div className="cust-drop-shadow">{p.name}</div>
                         </div>
                         </div>
                         </div>
