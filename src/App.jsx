@@ -3,6 +3,7 @@ import Display from "./components/display"
 import DetailsPge from "./pages/detailspge"
 import { Routes, Route } from "react-router-dom"
 import PersonsDetailspge from "./pages/personsDetailspge"
+import UserPage from "./pages/user"
 function App() {
   
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Display/>} />
         <Route path="/:movieId" element={<DetailsPge />} />
         <Route path="/person/:personId" element={<PersonsDetailspge/>} />
+        <Route path="/user" element={<UserPage/>}/>
       </Routes>
     </div>
     
