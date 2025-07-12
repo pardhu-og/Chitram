@@ -93,7 +93,7 @@ export default function DetailsPge (){
        }
         fetchVideoData ()
   
-    },[])
+    },[movieId])
     
     return(
         <>
