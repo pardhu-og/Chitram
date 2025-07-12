@@ -110,7 +110,7 @@ export default function DetailsPge (){
                         <div>Release Date: {detailsData.release_date}</div>
                         <div>{detailsData.vote_average.toFixed(1)} / 10</div>
                         <div className="flex gap-4">
-                             <button name='wishList' value={detailsData.id} onClick={addUserData} className="px-2 py-0.5  hover:bg-blue-700/20 rounded font-medium italic hover:cursor-pointer hover:text-gray-200" title={`${status === "wishList"?"Remove from Wish List":"Add to Wish List"}`}><Bookmark className={`pointer-events-none ${status === "wishList"?"fill-blue-400 stroke-blue-800":""}`}/></button>
+                             <button name='wishList' value={detailsData.id} onClick={addUserData} className="px-2 py-0.5  hover:bg-blue-700/20 rounded font-medium italic hover:cursor-pointer hover:text-gray-200" title={`${status === "wishList"?"Remove from Watch Later":"Add to Watch Later"}`}><Bookmark className={`pointer-events-none ${status === "wishList"?"fill-blue-400 stroke-blue-800":""}`}/></button>
                              <button name='seenList' value={detailsData.id} onClick={addUserData} className="px-2 py-0.5  hover:bg-blue-700/20 rounded font-medium italic hover:cursor-pointer hover:text-gray-200" title={`${status === "seenList"?"Remove from Seen List":"Add to Seen List"}`}><SquareCheckBig  className={`pointer-events-none ${status === "seenList"?"fill-blue-400 stroke-blue-800":""}`}/></button></div>
                         <div>
                             <div className="text-xl">Overview:</div>

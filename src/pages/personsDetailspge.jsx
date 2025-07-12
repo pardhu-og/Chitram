@@ -76,7 +76,7 @@ export default function PersonsDetailspge (){
             <div className={` flex-col  sm:grid-cols-[240px_1fr]  m-1 p-2 gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl ${biography ? "hidden":"flex sm:grid"}`}>
               <img className="m-1 sm:m-2 rounded-xl object-contain border border-white/30" src={`https://image.tmdb.org/t/p/original${personData.profile_path}`} alt={`${personData.name}`} />
               <div className="overflow-hidden h-90 m-1 sm:m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3">
-                  <div className="text-3xl font-extrabold font-[cursive] self-center">{personData.name} <button onClick={favouritefunc} className="hover:cursor-pointer"><Heart className={` w-8 ${favourite?"fill-red-400":"fill-white/50"}`} /></button></div>
+                  <div className="text-3xl font-extrabold font-[cursive] self-center">{personData.name} <button onClick={favouritefunc} title={favourite?"Remove from Favourite":"Add to Favourite"} className="hover:cursor-pointer"><Heart className={` w-8 ${favourite?"fill-red-400":"fill-white/50"}`} /></button></div>
                   <div>Date of Birth: {personData.birthday}</div>
                   <div>Known for: {personData.known_for_department}</div>
                   <div>Place of Birth: {personData.place_of_birth}</div>
