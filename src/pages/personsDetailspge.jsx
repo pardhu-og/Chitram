@@ -68,14 +68,12 @@ export default function PersonsDetailspge (){
 
 
 
-
-
     return (
         <>
         {(!personData || !knownfortitels) && <h1 className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1> }
         {personData && knownfortitels &&
-          <div>
-            <div className="flex flex-col sm:grid sm:grid-cols-[240px_1fr]  m-1 p-2 gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl">
+          <div >
+            <div className={` flex-col  sm:grid-cols-[240px_1fr]  m-1 p-2 gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl ${biography ? "hidden":"flex sm:grid"}`}>
               <img className="m-1 sm:m-2 rounded-xl object-contain border border-white/30" src={`https://image.tmdb.org/t/p/original${personData.profile_path}`} alt={`${personData.name}`} />
               <div className="overflow-hidden h-90 m-1 sm:m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3">
                   <div className="text-3xl font-extrabold font-[cursive] self-center">{personData.name} <button onClick={favouritefunc} className="hover:cursor-pointer"><Heart className={` w-8 ${favourite?"fill-red-400":"fill-white/50"}`} /></button></div>
@@ -92,7 +90,7 @@ export default function PersonsDetailspge (){
                 <div className="text-center text-2xl font-bold">Best Known For</div>
                 <div className="flex flex-wrap gap-4 sm:gap-6 justify-center p-4">
                 {knownfortitels.cast.map((p)=>
-                    <Link key={p.id} to={`${p.id}`}>
+                    <Link key={p.id} to={`/${p.id}`}>
                         <div className="sm:bg-white/5 bg-gray-200/40 w-60  sm:w-40 p-2 sm:p-1 rounded-xl cust-shadow relative group "> 
                         <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`} alt={p.title} className=" rounded-lg "/>
                         <div className="w-full h-full absolute top-0 left-0 bg-white/50  backdrop-blur-lg opacity-0 hover:opacity-100 rounded-xl ">
@@ -112,11 +110,11 @@ export default function PersonsDetailspge (){
             </div>
             </div>
         </div>
-        {biography && <div className="w-screen min-h-screen fixed top-0 flex align-center bg-white/30 backdrop-blur-lg">
-            <div className="relative bg-gray-800 m-8 p-8 text-gray-300 rounded-xl border-4 border-black/30">
+        {biography && <div className="w-screen min-h-screen fixed inset-0  flex align-center bg-white/30 backdrop-blur-lg">
+            <div className="relative bg-gray-800 m-2 p-4 sm:m-8 sm:p-8 text-gray-300 rounded-xl border-4 border-black/30 overflow-auto ">
                 <div className="text-center text-3xl font-bold font-[cursive] mb-8 mt-4">Biography</div>
                 <div className=" text-lg font-medium text-justify ">{personData.biography}
-                <button className=" absolute -top-1 right-2 text-2xl hover:cursor-pointer hover:scale-110 font-bold text-white" onClick={()=>setBiography(false)}>x</button>
+                <button className=" absolute top-0 sm:-top-1  right-2 text-2xl hover:cursor-pointer hover:scale-110 font-bold text-white" onClick={()=>setBiography(false)}>x</button>
             </div>
             </div>
             </div>}
