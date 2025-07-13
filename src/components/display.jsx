@@ -24,7 +24,10 @@ export default function Display(){
                 })
                 if (!res.ok) {throw new Error(`Error: ${res.status}`)}
                 const data = await res.json()
-                setDispdata(data.results)
+                if(list === "now_playing" || list === "upcoming") {
+                    const data2 = data.results.sort((a,b)=>Date.parse(b.release_date)-Date.parse(a.release_date))
+                    setDispdata(data2)
+                } else { setDispdata(data.results)}
                 } catch (err) {console.log(err)}
             
         }

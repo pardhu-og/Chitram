@@ -1,8 +1,4 @@
-// import detailsdatafrmId from '../data/sampleDetails.json'
 import { useEffect, useState } from "react"
-// import ImagesfrmId from '../data/sampleImages.json'
-// import videos from '../data/sampleVideos.json' 
-// import caste from '../data/sampleCaste.json'
 import { Link, useParams } from "react-router-dom"
 import { Bookmark, SquareCheckBig } from 'lucide-react'
 export default function DetailsPge (){
@@ -120,16 +116,24 @@ export default function DetailsPge (){
             <div className="mx-2 py-2 font-bold bg-white/30 rounded-lg col-span-2 flex flex-wrap justify-evenly gap-1">
                 {!castdata && <h1 className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1>}
                 {castdata && castdata.cast.length === 0 && <p>No Cast Data Available</p>}
+                {castdata && castdata.crew.filter((p)=>p.job === "Director").map((p)=><Link key={p.id} to={`/person/${p.id}`}>
+                                                                            <div className=" flex w-80 sm:w-full border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm my-2 p-2 rounded-xl ">
+                                                                            <div><img className="w-20 rounded-full aspect-square object-contain object-top text-xs text-center font-medium" src={`https://image.tmdb.org/t/p/w300${p.profile_path}`} alt={`${p.name}` } /></div>
+                                                                            <div className="flex flex-col justify-center gap-1">
+                                                                                <div>{p.name}</div>
+                                                                                <div className="text-sm">(Director)</div>
+                                                                            </div>
+                                                                            </div></Link>)}
                 {castdata && castdata.cast.filter((p)=>p.order <=10).map((p)=><Link key={p.id} to={`/person/${p.id}`}>
                                                                             <div className=" flex w-80 sm:w-full border border-white/30 bg-white/30 hover:bg-black/30 hover:text-white transition-all duration-300 ease-in-out backdrop-blur-sm my-2 p-2 rounded-xl ">
                                                                             <div><img className="w-20 rounded-full aspect-square object-contain object-top text-xs text-center font-medium" src={`https://image.tmdb.org/t/p/w300${p.profile_path}`} alt={`${p.name}` } /></div>
                                                                             <div className="flex flex-col justify-center gap-1">
                                                                                 <div>{p.name}</div>
-                                                                                <div>{p.character}</div>
+                                                                                <div className="text-sm">{`(${p.character})`}</div>
                                                                             </div>
                                                                             </div></Link>)}
             </div>
-            {!videodata && <h1 className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1>}
+            {!videodata && <h1 className='m-10 text-xl sm:text-4xl text-center col-span-2'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1>}
             {videodata && videodata.results.length === 0 && <p className="text-center text-2xl col-span-2 mt-4">No Videos Available</p>}
             {videodata && 
                 <div className="col-span-2 flex flex-col sm:flex-row justify-center py-2 mx-2 gap-2">

@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react"
-// import samplePersons from "../data/samplePerson.json"
-// import knownfor from "../data/sampleKnownfor.json"
 import { Link, useParams } from "react-router-dom"
 import { Heart } from "lucide-react"
 export default function PersonsDetailspge (){
@@ -13,7 +11,6 @@ export default function PersonsDetailspge (){
     function favouritefunc(){
         if(!favourite) {
            const data = [...userData.favactr, String(personId)]
-           console.log(userData.favactr)
             setUserData (p=>({...p, "favactr":data }))
             setFavourite(true)
         } else {
@@ -50,7 +47,8 @@ export default function PersonsDetailspge (){
           })
             if(!res2.ok) {throw new Error("Error fetching Person Known for titles", res2.status, res2.statusText);
           }
-          const Data2 = await res2.json()
+          const Data2 = await res2.json();
+          const Data3 = Data2.cast.sort((a,b) => b.popularity - a.popularity);
           setKnownfortitels(Data2)
           } catch(err) {console.log(err)}
         }
