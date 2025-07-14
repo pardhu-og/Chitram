@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @utility cust-shadow {
@@ -11,6 +12,7 @@
 @theme {
     --animate-revolve: revolve 3s linear infinite;
     --font-clicker: "Clicker Script", sans-serif;
+    --font-comic: "Comic Relief", sans-serif;
 
     @keyframes revolve {
         0%, {transform: rotateY(0);}

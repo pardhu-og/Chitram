@@ -57,13 +57,13 @@ if(value.trim() !== "") {
           </h1>
           <div className="sm:self-end mb-1 flex gap-2 sm:mr-50">
             <div className="">
-              <input type="text" value={value} onChange={handleChange} placeholder="Search..." className="border rounded-lg px-2 w-40 h-6 self-end my-2 font-[cursive]" />
+              <input type="text" value={value} onChange={handleChange} placeholder="Search..." className="border rounded-lg px-2 w-40 h-6 self-end my-2 font-comic" />
               <div className={`absolute z-10 p-1 w-40 border rounded flex-col gap-1 bg-gray-300 divide-y ${value.trim() !== ""?"flex":"hidden"}`}>
                 {value.trim() !=="" && displayResults.length === 0 && <div className='text-lg text-center'>Loading... <div className=' h-3 w-3 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></div>}
                 {displayResults.map(p=> <Link onClick={handleLinkClick} key={p.id} to={`/${p.id}`}>
-                                          <div className="flex items-center p-1 hover:text-red-600 transition rounded">
+                                          <div className="flex items-center p-1 gap-1 hover:text-red-600 transition rounded">
                                             <img src={`https://image.tmdb.org/t/p/w300${p.poster_path}`} alt={p.title} className="h-15"/>
-                                            <div className="text-sm font-medium font-[cursive]">{p.title}</div>
+                                            <div className="text-sm font-medium font-comic">{p.title}</div>
                                           </div>
                                         </Link>)}
               </div>

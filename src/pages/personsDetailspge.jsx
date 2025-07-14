@@ -74,7 +74,7 @@ export default function PersonsDetailspge (){
             <div className={` flex-col  sm:grid-cols-[240px_1fr]  m-1 p-2 gap-2 bg-gradient-to-b from-gray-800/90 to-black/90 backdrop-blur-xl ${biography ? "hidden":"flex sm:grid"}`}>
               <img className="m-1 sm:m-2 rounded-xl object-contain border border-white/30" src={`https://image.tmdb.org/t/p/original${personData.profile_path}`} alt={`${personData.name}`} />
               <div className="overflow-hidden h-90 m-1 sm:m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3">
-                  <div className="text-3xl font-extrabold font-[cursive] self-center">{personData.name} <button onClick={favouritefunc} title={favourite?"Remove from Favourite":"Add to Favourite"} className="hover:cursor-pointer"><Heart className={` w-8 ${favourite?"fill-red-400":"fill-white/50"}`} /></button></div>
+                  <div className="text-3xl font-extrabold font-comic self-center">{personData.name} <button onClick={favouritefunc} title={favourite?"Remove from Favourite":"Add to Favourite"} className="hover:cursor-pointer"><Heart className={` w-8 ${favourite?"fill-red-400":"fill-white/50"}`} /></button></div>
                   <div>Date of Birth: {personData.birthday}</div>
                   <div>Known for: {personData.known_for_department}</div>
                   <div>Place of Birth: {personData.place_of_birth}</div>
@@ -84,7 +84,7 @@ export default function PersonsDetailspge (){
                   </div>
               </div>
 
-            <div className=" col-span-2 flex flex-col m-1 sm:m-4 p-8 bg-white/30 rounded-lg gap-6 font-[cursive]">
+            <div className=" col-span-2 flex flex-col m-1 sm:m-4 p-8 bg-white/30 rounded-lg gap-6 font-comic">
                 <div className="text-center text-2xl font-bold">Best Known For</div>
                 <div className="flex flex-wrap gap-4 sm:gap-6 justify-center p-4">
                 {knownfortitels.cast.map((p)=>
@@ -110,7 +110,7 @@ export default function PersonsDetailspge (){
         </div>
         {biography && <div className="w-screen min-h-screen fixed inset-0  flex align-center bg-white/30 backdrop-blur-lg">
             <div className="relative bg-gray-800 m-2 p-4 sm:m-8 sm:p-8 text-gray-300 rounded-xl border-4 border-black/30 overflow-auto ">
-                <div className="text-center text-3xl font-bold font-[cursive] mb-8 mt-4">Biography</div>
+                <div className="text-center text-3xl font-bold font-comic mb-8 mt-4">Biography</div>
                 <div className=" text-lg font-medium text-justify ">{personData.biography}
                 <button className=" absolute top-0 sm:-top-1  right-2 text-2xl hover:cursor-pointer hover:scale-110 font-bold text-white" onClick={()=>setBiography(false)}>x</button>
             </div>

@@ -64,7 +64,7 @@ try {
     return(
         <>
         
-        <div className="flex flex-wrap mb-4 gap-4 justify-evenly sm:gap-6 sm:justify-center p-1 sm:p-4 w-fit mx-auto  font-[cursive] text-sm sm:text-lg
+        <div className="flex flex-wrap mb-4 gap-4 justify-evenly sm:gap-6 sm:justify-center p-1 sm:p-4 w-fit mx-auto  font-comic text-sm sm:text-lg
                         ">
                 <button value={"wishList"} onClick={handleClick} className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100   transition-all duration-100 ease-out ${list === "wishList"?" bg-purple-600 text-gray-200 hover:bg-purple-700 pointer-events-none":""}`}>To Watch</button>
                 <button value={"seenList"} onClick={handleClick} className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100 transition-all duration-100 ease-out  ${list === "seenList"?" bg-purple-600 text-gray-200 hover:bg-purple-400/80 pointer-events-none":""}`}>Seen List </button>

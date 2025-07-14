@@ -1,4 +1,3 @@
-import { Heading1 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 export default function Display(){
@@ -86,14 +85,14 @@ export default function Display(){
     return (
         <>
         <div>
-            <div className="flex flex-wrap sm:gap-6  sm:p-4 w-fit sm:text-lg mx-auto justify-evenly font-[cursive] 
+            <div className="flex flex-wrap sm:gap-6  sm:p-4 w-fit sm:text-lg mx-auto justify-evenly font-comic 
                             text-md p-2 gap-2">
                 <button value={"now_playing"} onClick={handleClick} className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100   transition-all duration-100 ease-out ${list === "now_playing"?" bg-purple-600 text-gray-200 hover:bg-purple-400/80 pointer-events-none":""}`}>Now Playing</button>
                 <button value={"popular"} onClick={handleClick} className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100  transition-all duration-100 ease-out  ${list === "popular"?" bg-purple-600 text-gray-200 hover:bg-purple-400/80 pointer-events-none":""}`}>Trending</button>
                 <button value={"top_rated"} onClick={handleClick} className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100  transition-all duration-100 ease-out  ${list === "top_rated"?" bg-purple-600 text-gray-200 hover:bg-purple-400/80 pointer-events-none":""}`}>Top Rated</button>
                 <button value={"upcoming"} onClick={handleClick} className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full cust-drop-shadow hover:cursor-pointer  hover:bg-gray-400/80  hover:text-gray-100  transition-all duration-100 ease-out  ${list === "upcoming"?" bg-purple-600 text-gray-200 hover:bg-purple-400/80 pointer-events-none":""}`}>Upcoming</button>
             </div>
-            {!dispdata && <h1 className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></h1>}
+            {!dispdata && <div className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></div>}
             {dispdata && 
             <div className="flex flex-wrap gap-4 sm:gap-6 justify-center p-4">
                 {dispdata.map((p)=>
@@ -107,7 +106,7 @@ export default function Display(){
                             <div className="cust-drop-shadow">{p.vote_average.toFixed(1)}/10</div>
                         </div>
                         </div>
-                        <div className='sm:hidden flex flex-col items-center py-1 text-lg font-semibold rounded-lg'>
+                        <div className='md:hidden flex flex-col items-center py-1 text-lg font-semibold rounded-lg'>
                             <div className="cust-drop-shadow text-center text-xl p-1">{p.title}</div>
                             <div className="flex justify-center gap-2"><div className='animate-revolve inline-block'>⭐</div><div className='inline-block'>{p.vote_average.toFixed(1)}</div></div>  
                         </div>
@@ -117,6 +116,7 @@ export default function Display(){
             </div>}
         </div>
         <div ref={paginationdiv}></div>
+        <div className='m-10 text-xl sm:text-4xl text-center'>Loading... <div className='sm:h-6 sm:w-6 h-4 w-4 m-1 mb-0 pb-0 border-b-2 border-r-1 sm:border-b-3 sm:border-r-1 border-blue-800 inline-block rounded-full animate-spin'></div></div>
         </>
 
 
