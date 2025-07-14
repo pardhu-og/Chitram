@@ -84,7 +84,7 @@ export default function PersonsDetailspge (){
                   </div>
               </div>
 
-            <div className=" col-span-2 flex flex-col m-1 sm:m-4 p-8 bg-white/30 rounded-lg gap-6 font-comic">
+            <div className=" col-span-2 flex flex-col m-1 sm:m-4 p-8 bg-white/30 rounded-lg gap-6">
                 <div className="text-center text-2xl font-bold">Best Known For</div>
                 <div className="flex flex-wrap gap-4 sm:gap-6 justify-center p-4">
                 {knownfortitels.cast.map((p)=>
