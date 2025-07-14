@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { User  } from 'lucide-react';
+import { User, Info  } from 'lucide-react';
 import { useCallback, useEffect, useState } from "react";
 
 export default function Title(){
@@ -68,7 +68,8 @@ if(value.trim() !== "") {
                                         </Link>)}
               </div>
             </div>            
-            <div className=" text-lg sm:text-3xl m-1 " title="My Collection"><Link to="/user"><User className="w-6 h-6 sm:w-7 sm:h-7 hover:fill-gray-600 hover:scale-105" /></Link></div>
+            <div className=" text-lg sm:text-3xl m-1 " title="My Collection"><Link to="/user"><User className="w-6 h-6  hover:fill-gray-600 hover:scale-105" /></Link></div>
+            <div className=" text-lg sm:text-3xl m-1 " title="About"><Link to="/about"><Info className="w-6 h-6 hover:fill-gray-600 hover:scale-105" /></Link></div>
           </div>
           
         </div>

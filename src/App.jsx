@@ -4,6 +4,7 @@ import DetailsPge from "./pages/detailspge"
 import { Routes, Route } from "react-router-dom"
 import PersonsDetailspge from "./pages/personsDetailspge"
 import UserPage from "./pages/user"
+import About from "./pages/about"
 function App() {
   
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/:movieId" element={<DetailsPge />} />
         <Route path="/person/:personId" element={<PersonsDetailspge/>} />
         <Route path="/user" element={<UserPage/>}/>
+        <Route path="/about" element ={<About/>}/>
       </Routes>
     </div>
     
