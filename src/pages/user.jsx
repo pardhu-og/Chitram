@@ -120,9 +120,9 @@ try {
                             <div className="cust-drop-shadow">{p.vote_average.toFixed(1)}/10</div>
                         </div>
                         </div>
-                        <div className='sm:hidden flex flex-col items-center py-1 text-lg font-semibold rounded-lg'>
-                            <div className="cust-drop-shadow text-center text-xl p-1">{p.title}</div>
-                            <div className="flex justify-center gap-2"><div className='animate-revolve inline-block'>⭐</div><div className='inline-block'>{p.vote_average.toFixed(1)}</div></div>  
+                        <div className='lg:hidden flex flex-col items-center py-1 text-lg font-semibold rounded-lg'>
+                            <div className="sm:hidden cust-drop-shadow text-center text-xl p-1">{p.title}</div>
+                            <div className="flex justify-center gap-2"><div className='animate-revolve sm:animate-none inline-block'>⭐</div><div className='inline-block'>{p.vote_average.toFixed(1)}</div></div>  
                         </div>
                         </div>
                     </Link>
@@ -141,7 +141,7 @@ try {
                         <div className="cust-drop-shadow">{p.name}</div>
                         </div>
                         </div>
-                            <div className='sm:hidden flex flex-col items-center py-1 text-lg font-semibold rounded-lg'>
+                            <div className='lg:hidden flex flex-col items-center py-1 text-lg font-semibold rounded-lg'>
                             <div className="cust-drop-shadow text-center text-xl p-1">{p.name}</div>
                         </div>
                         </div>
