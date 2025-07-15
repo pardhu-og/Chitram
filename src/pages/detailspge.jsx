@@ -102,7 +102,7 @@ export default function DetailsPge (){
             <div className="m-2 p-4 pb-2 font-bold text-lg border border-white/30 bg-white/30 backdrop-blur-sm rounded-xl flex flex-col gap-3" >
                 <div className="text-3xl font-extrabold ">{detailsData.title}</div>
                         <div className="italic font-[400]  ">{detailsData.tagline}</div>
-                        <div className="flex leading-none divide-x-[1.5px] ml-[-8px]">{detailsData.genres.map((p)=><div key={p.id} className="p-1 px-2 ">{p.name}</div>)}</div>
+                        <div className="flex leading-none divide-x-[1.5px] ml-[-8px]">{detailsData.genres.slice(0,3).map((p)=><div key={p.id} className="p-1 px-2 ">{p.name}</div>)}</div>
                         <div>Release Date: {detailsData.release_date}</div>
                         <div>{detailsData.vote_average.toFixed(1)} / 10</div>
                         <div className="flex gap-4">
